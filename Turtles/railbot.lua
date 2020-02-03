@@ -121,10 +121,10 @@ end
 
 local placePowered = false
 local railIndex = 1
-local torchIndex = math.floor((powerLength / 2) + 0.5)
+local torchIndex = math.floor((poweredLength / 2) + 0.5)
 local timeStart = os.clock()
 
-print('railbot starting (' .. railLength .. 'x' .. powerLength .. ')')
+print('railbot starting (' .. railLength .. 'x' .. poweredLength .. ')')
 
 while checkInventoryItems() do
     -- place torch if required
