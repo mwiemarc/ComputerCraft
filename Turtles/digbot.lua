@@ -31,7 +31,7 @@ local up = (height > 0)
 local heightAbs = math.abs(height)
 
 -- print start info
-print('digging started (' .. length .. 'x' .. width .. 'x' .. heightAbs .. ' ' .. (up and 'up' or 'down') .. ')')
+print('digbot starting (' .. length .. 'x' .. width .. 'x' .. heightAbs .. ' ' .. (up and 'up' or 'down') .. ')')
 
 -- farm loop
 for z = 1, heightAbs do
@@ -97,4 +97,4 @@ for z = 1, heightAbs do
 end
 
 -- print finished message
-print('digging finished (' .. durationString(tStart) .. ')')
+print('digbot finished (' .. durationString(tStart) .. ')')
