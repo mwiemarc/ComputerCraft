@@ -15,11 +15,15 @@ local durationString = function(ts)
     local hrs = math.floor(s / 3600)
     local mins = math.floor(s / 60 - (hrs * 60))
     local secs = math.floor(s - hrs * 3600 - mins * 60)
-    local dStr = 'duration:'
+    local dStr = ''
 
     dStr = ((hrs > 0) and (dStr .. ' ' .. hrs .. 'h')) or dStr
     dStr = ((mins > 0) and (dStr .. ' ' .. mins .. 'm')) or dStr
     dStr = ((secs > 0) and (dStr .. ' ' .. secs .. 's')) or dStr
+
+    if dStr == '' then
+        dStr = ' -'
+    end
 
     return dStr
 end
@@ -115,4 +119,4 @@ for z = 1, heightAbs do
 end
 
 -- print finished message
-print('digbot finished (' .. durationString(tStart) .. ')')
+print('digbot finished (duration:' .. durationString(tStart) .. ')')
