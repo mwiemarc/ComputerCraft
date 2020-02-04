@@ -2,6 +2,7 @@ local args = {...}
 
 if #args ~= 3 then
     print('usage: dig <length> <width> <height>')
+    return
 end
 
 local length = args[1]
