@@ -1,10 +1,13 @@
-local width = 3
-local length = 3
-local height = 3
+local args = {...}
 
---
--- dont edit below here
---
+if #args ~= 3 then
+    print('usage: dig <length> <width> <height>')
+end
+
+local length = args[1]
+local width = args[2]
+local height = args[3]
+
 local durationString = function(ts)
     local s = os.clock() - ts
 

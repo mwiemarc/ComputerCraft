@@ -1,5 +1,5 @@
-local railLength = 27
-local poweredLength = 9
+local placeLength = 3
+local distance = 6
 
 -- :: predefined item stack positions ::
 -- slot 1: rail
