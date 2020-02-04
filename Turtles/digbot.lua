@@ -5,9 +5,9 @@ if #args ~= 3 then
     return
 end
 
-local length = args[1]
-local width = args[2]
-local height = args[3]
+local length = tonumber(args[1])
+local width = tonumber(args[2])
+local height = tonumber(args[3])
 
 local durationString = function(ts)
     local s = os.clock() - ts
