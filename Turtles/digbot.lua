@@ -53,12 +53,12 @@ print('digbot starting (' .. length .. 'x' .. width .. 'x' .. heightAbs .. ' ' .
 for z = 1, heightAbs do
     for y = 1, width do
         for x = 1, length do
-            -- dig forward
-            if x ~= length then
-                if z ~= heightAbs then
-                    digUp()
-                end
+            -- dig
+            if z ~= heightAbs then
+                digUp()
+            end
 
+            if x ~= length then
                 dig()
                 turtle.forward()
             end
