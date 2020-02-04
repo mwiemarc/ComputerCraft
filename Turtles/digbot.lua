@@ -55,6 +55,10 @@ for z = 1, heightAbs do
         for x = 1, length do
             -- dig forward
             if x ~= length then
+                if z ~= heightAbs then
+                    digUp()
+                end
+
                 dig()
                 turtle.forward()
             end
