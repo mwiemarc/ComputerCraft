@@ -23,6 +23,22 @@ end
 local dig = function()
     while turtle.detect() do
         turtle.dig()
+
+        sleep(0.25)
+    end
+end
+
+local digUp = function()
+    while turtle.detectUp() do
+        turtle.digUp()
+
+        sleep(0.25)
+    end
+end
+
+local digDown = function()
+    if turtle.detectDown() then
+        turtle.digDown()
     end
 end
 
@@ -79,18 +95,12 @@ for z = 1, heightAbs do
 
         turtle.turnRight()
 
-        -- adjust height
+        -- move to next level
         if up then
-            while turtle.detectUp() do
-                turtle.digUp()
-            end
-
+            digUp()
             turtle.up()
         else
-            if turtle.detectDown() then
-                turtle.digDown()
-            end
-
+            digDown()
             turtle.down()
         end
     end
