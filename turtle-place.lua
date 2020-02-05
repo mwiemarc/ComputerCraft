@@ -93,7 +93,7 @@ local place = true
 local index = 1
 local timeStart = os.clock()
 
-print('placebot starting (%f to %f, side: %s)', pCount, pDist, pSide)
+print(string.format('placebot starting (%f to %f, side: %s)', pCount, pDist, pSide))
 
 while true do
     if not refillSlot(1) then
@@ -103,7 +103,7 @@ while true do
 
     if place then
         if not placeOnSide(pSide) then
-            print('unsupported side: %s (supported sides: top, bottom, left, right', side)
+            print(string.format('unsupported side: %s (supported sides: top, bottom, left, right', side))
             return
         end
     end
@@ -124,4 +124,4 @@ while true do
     end
 end
 
-print('placebot stopped (duration: %s)', timeDiffString(timeStart))
+print(string.format('placebot stopped (duration: %s)', timeDiffString(timeStart)))

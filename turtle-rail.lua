@@ -106,7 +106,7 @@ local railIndex = 1
 local torchIndex = math.floor((poweredLength / 2) + 0.5)
 local timeStart = os.clock()
 
-print('railbot starting (%fx%f)', railLength, poweredLength)
+print(string.format('railbot starting (%fx%f)', railLength, poweredLength))
 
 while true do
     if not refillSlot(1) then
@@ -147,4 +147,4 @@ while true do
     end
 end
 
-print('railbot stopped (duration: %s)', timeDiffString(timeStart))
+print(string.format('railbot stopped (duration: %s)', timeDiffString(timeStart)))

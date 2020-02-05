@@ -46,7 +46,7 @@ local up = (height > 0)
 local heightAbs = math.abs(height)
 
 -- print start info
-print('digbot starting (%fx%fx%f %s)', length, width, heightAbs, (up and 'up' or 'down'))
+print(string.format('digbot starting (%fx%fx%f %s)', length, width, heightAbs, (up and 'up' or 'down')))
 
 -- farm loop
 for z = 1, heightAbs do
@@ -110,4 +110,4 @@ for z = 1, heightAbs do
 end
 
 -- print finished message
-print('digbot finished (duration: %s)', timeDiffString(tStart))
+print(string.format('digbot finished (duration: %s)', timeDiffString(tStart)))

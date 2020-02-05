@@ -32,7 +32,7 @@ end
 
 turtle.select(slot) -- select first slot
 
-print('farmbot starting (' .. length .. 'x' .. width .. ')')
+print(string.format('farmbot starting (' .. length .. 'x' .. width .. ')'))
 
 -- farm loop
 for y = 1, width do
@@ -160,4 +160,4 @@ else
 	end
 end
 
-print('farmbot finished (' .. durationString(timeStart) .. ')')
+print(string.format('farmbot finished (' .. durationString(timeStart) .. ')'))
