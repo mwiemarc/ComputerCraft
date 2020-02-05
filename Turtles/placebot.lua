@@ -5,7 +5,7 @@ if #args ~= 3 then
     return
 end
 
-local pSide = tonumber(args[1])
+local pSide = tostring(args[1])
 local pCount = tonumber(args[2])
 local pDist = tonumber(args[3])
 
