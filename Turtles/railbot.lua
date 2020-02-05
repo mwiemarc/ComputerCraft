@@ -1,5 +1,15 @@
-local railLength = 27
-local poweredLength = 9
+local args = {...}
+
+if #args ~= 2 then
+    print('usage: place <length> <distance>')
+    return
+end
+
+local railLength = tonumber(args[1])
+local poweredLength = tonumber(args[2])
+
+--local railLength = 27
+--local poweredLength = 9
 
 -- :: predefined item stack positions ::
 -- slot 1: rail
@@ -9,64 +19,36 @@ local poweredLength = 9
 
 -- don't edit below here
 
-local durationTime = function(ts)
-    local s = os.clock() - ts
+local function timeDiffString(start)
+    local diff = os.clock() - start
 
-    local hrs = math.floor(s / 3600)
-    local mins = math.floor(s / 60 - (hrs * 60))
-    local secs = math.floor(s - hrs * 3600 - mins * 60)
-    local dStr = ''
+    local hrs = math.floor(diff / 3600)
+    local mins = math.floor(diff / 60 - (hrs * 60))
+    local secs = math.floor(diff - hrs * 3600 - mins * 60)
 
-    dStr = ((hrs > 0) and (dStr .. ' ' .. hrs .. 'h')) or dStr
-    dStr = ((mins > 0) and (dStr .. ' ' .. mins .. 'm')) or dStr
-    dStr = ((secs > 0) and (dStr .. ' ' .. secs .. 's')) or dStr
-
-    return dStr
+    return string.format('%fh%fm%fs', hrs, mins, secs)
 end
 
-local function fillInventorySlot(slot)
-    turtle.select(slot)
+local function refillSlot(slot)
+    local count = turtle.getItemCount(1)
 
-    for i = 1, 16 do
-        if i ~= slot and turtle.compareTo(i) then
-            turtle.select(i)
-            turtle.transferTo(slot)
-            break
+    if count < 1 then
+        return false
+    elseif count > 1 then
+        return true
+    else
+        turtle.select(slot)
+
+        for i = 1, 16 do
+            if i ~= slot and turtle.compareTo(i) then
+                turtle.select(i)
+                turtle.transferTo(slot)
+                return true
+            end
         end
-    end
-end
 
-local function checkInventoryItems()
-    local rCount = turtle.getItemCount(1)
-    local pCount = turtle.getItemCount(2)
-    local bCount = turtle.getItemCount(15)
-    local tCount = turtle.getItemCount(16)
-
-    if rCount < 1 then
         return false
-    elseif rCount == 1 then
-        fillInventorySlot(1)
     end
-
-    if pCount < 1 then
-        return false
-    elseif pCount == 1 then
-        fillInventorySlot(2)
-    end
-
-    if bCount < 1 then
-        return false
-    elseif bCount == 1 then
-        fillInventorySlot(15)
-    end
-
-    if tCount < 1 then
-        return false
-    elseif tCount == 1 then
-        fillInventorySlot(16)
-    end
-
-    return true
 end
 
 local function placeRail(powered)
@@ -124,9 +106,23 @@ local railIndex = 1
 local torchIndex = math.floor((poweredLength / 2) + 0.5)
 local timeStart = os.clock()
 
-print('railbot starting (' .. railLength .. 'x' .. poweredLength .. ')')
+print('railbot starting (%fx%f)', railLength, poweredLength)
 
-while checkInventoryItems() do
+while true do
+    if not refillSlot(1) then
+        print('empty slot: 1')
+        return
+    elseif not refillSlot(2) then
+        print('empty slot: 2')
+        return
+    elseif not refillSlot(15) then
+        print('empty slot: 15')
+        return
+    elseif not refillSlot(16) then
+        print('empty slot: 16')
+        return
+    end
+
     -- place torch if required
     if placePowered and railIndex == torchIndex then
         placeTorch()
@@ -151,4 +147,4 @@ while checkInventoryItems() do
     end
 end
 
-print('railbot: stopped, required item is out (duration:' .. durationTime(timeStart) .. ')')
+print('railbot stopped (duration: %s)', timeDiffString(timeStart))

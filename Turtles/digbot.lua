@@ -9,23 +9,14 @@ local length = tonumber(args[1])
 local width = tonumber(args[2])
 local height = tonumber(args[3])
 
-local durationString = function(ts)
-    local s = os.clock() - ts
+local timeDiffString = function(start)
+    local diff = os.clock() - start
 
-    local hrs = math.floor(s / 3600)
-    local mins = math.floor(s / 60 - (hrs * 60))
-    local secs = math.floor(s - hrs * 3600 - mins * 60)
-    local dStr = ''
+    local hrs = math.floor(diff / 3600)
+    local mins = math.floor(diff / 60 - (hrs * 60))
+    local secs = math.floor(diff - hrs * 3600 - mins * 60)
 
-    dStr = ((hrs > 0) and (dStr .. ' ' .. hrs .. 'h')) or dStr
-    dStr = ((mins > 0) and (dStr .. ' ' .. mins .. 'm')) or dStr
-    dStr = ((secs > 0) and (dStr .. ' ' .. secs .. 's')) or dStr
-
-    if dStr == '' then
-        dStr = ' -'
-    end
-
-    return dStr
+    return string.format('%fh%fm%fs', hrs, mins, secs)
 end
 
 local dig = function()
@@ -55,7 +46,7 @@ local up = (height > 0)
 local heightAbs = math.abs(height)
 
 -- print start info
-print('digbot starting (' .. length .. 'x' .. width .. 'x' .. heightAbs .. ' ' .. (up and 'up' or 'down') .. ')')
+print('digbot starting (%fx%fx%f %s)', length, width, heightAbs, (up and 'up' or 'down'))
 
 -- farm loop
 for z = 1, heightAbs do
@@ -119,4 +110,4 @@ for z = 1, heightAbs do
 end
 
 -- print finished message
-print('digbot finished (duration:' .. durationString(tStart) .. ')')
+print('digbot finished (duration: %s)', timeDiffString(tStart))
