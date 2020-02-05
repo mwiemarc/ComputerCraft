@@ -89,7 +89,7 @@ local function placeOnSide(side)
     return true
 end
 
-local place = false
+local place = true
 local index = 1
 local timeStart = os.clock()
 
@@ -106,11 +106,6 @@ while true do
             print('unsupported side: %s (supported sides: top, bottom, left, right', side)
             return
         end
-    end
-
-    -- test
-    if turtle.detectDown() then
-        turtle.digDown()
     end
 
     turtle.forward()
