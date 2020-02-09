@@ -23,7 +23,7 @@ local dig = function()
     while turtle.detect() do
         turtle.dig()
 
-        sleep(0.25)
+        sleep(0.35)
     end
 end
 
@@ -31,7 +31,7 @@ local digUp = function()
     while turtle.detectUp() do
         turtle.digUp()
 
-        sleep(0.25)
+        sleep(0.35)
     end
 end
 

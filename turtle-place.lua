@@ -48,7 +48,7 @@ local function placeOnSide(side)
         while turtle.detectUp() do
             turtle.digUp()
 
-            sleep(0.25)
+            sleep(0.35)
         end
 
         turtle.placeUp()
@@ -56,7 +56,7 @@ local function placeOnSide(side)
         if turtle.detectBottom() then
             turtle.digBottom()
 
-            sleep(0.25)
+            sleep(0.35)
         end
 
         turtle.placeBottom()
@@ -66,7 +66,7 @@ local function placeOnSide(side)
         while turtle.detect() do
             turtle.dig()
 
-            sleep(0.25)
+            sleep(0.35)
         end
 
         turtle.place()
