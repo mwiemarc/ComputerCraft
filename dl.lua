@@ -2,6 +2,7 @@ local args = {...}
 
 if #args ~= 2 then
     print('usage: dl <url> <filename>')
+    return
 end
 
 local req = http.get(args[1])
