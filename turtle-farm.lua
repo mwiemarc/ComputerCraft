@@ -6,22 +6,17 @@ local dropItems = true
 --
 -- dont edit below here
 --
-local timeStart = os.clock()
+local tStart = os.clock()
 local slot = 1
 
-local durationString = function(ts)
-	local s = os.clock() - ts
+local timeDiffString = function(start)
+    local diff = os.clock() - start
 
-	local hrs = math.floor(s / 3600)
-	local mins = math.floor(s / 60 - (hrs * 60))
-	local secs = math.floor(s - hrs * 3600 - mins * 60)
-	local dStr = 'duration:'
+    local hrs = math.floor(diff / 3600)
+    local mins = math.floor(diff / 60 - (hrs * 60))
+    local secs = math.floor(diff - hrs * 3600 - mins * 60)
 
-	dStr = ((hrs > 0) and (dStr .. ' ' .. hrs .. 'h')) or dStr
-	dStr = ((mins > 0) and (dStr .. ' ' .. mins .. 'm')) or dStr
-	dStr = ((secs > 0) and (dStr .. ' ' .. secs .. 's')) or dStr
-
-	return dStr
+    return string.format('%dh%dm%ds', math.floor(hrs + 0.5), math.floor(mins + 0.5), math.floor(secs + 0.5))
 end
 
 -- check for initial items to place
@@ -160,4 +155,4 @@ else
 	end
 end
 
-print(string.format('farmbot finished (' .. durationString(timeStart) .. ')'))
+print(string.format('farmbot finished (duration: %s)', timeDiffString(tStart) ))

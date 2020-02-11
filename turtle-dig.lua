@@ -16,14 +16,14 @@ local timeDiffString = function(start)
     local mins = math.floor(diff / 60 - (hrs * 60))
     local secs = math.floor(diff - hrs * 3600 - mins * 60)
 
-    return string.format('%fh%fm%fs', hrs, mins, secs)
+    return string.format('%dh%dm%ds', math.floor(hrs + 0.5), math.floor(mins + 0.5), math.floor(secs + 0.5))
 end
 
 local dig = function()
     while turtle.detect() do
         turtle.dig()
 
-        sleep(0.35)
+        sleep(0.5)
     end
 end
 
@@ -31,7 +31,7 @@ local digUp = function()
     while turtle.detectUp() do
         turtle.digUp()
 
-        sleep(0.35)
+        sleep(0.5)
     end
 end
 
@@ -46,7 +46,7 @@ local up = (height > 0)
 local heightAbs = math.abs(height)
 
 -- print start info
-print(string.format('digbot starting (%fx%fx%f %s)', length, width, heightAbs, (up and 'up' or 'down')))
+print(string.format('digbot starting (%dx%dx%d %s)', length, width, heightAbs, (up and 'up' or 'down')))
 
 -- farm loop
 for z = 1, heightAbs do

@@ -16,7 +16,7 @@ local timeDiffString = function(start)
     local mins = math.floor(diff / 60 - (hrs * 60))
     local secs = math.floor(diff - hrs * 3600 - mins * 60)
 
-    return string.format('%fh%fm%fs', hrs, mins, secs)
+    return string.format('%dh%dm%ds', math.floor(hrs + 0.5), math.floor(mins + 0.5), math.floor(secs + 0.5))
 end
 
 local function refillSlot(slot)
